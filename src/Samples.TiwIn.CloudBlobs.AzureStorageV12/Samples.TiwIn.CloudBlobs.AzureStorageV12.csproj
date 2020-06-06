@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>TiwIn.CloudBlobs.AzureStorageV12</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TiwIn.CloudBlobs.AzureStorageV12\TiwIn.CloudBlobs.AzureStorageV12.csproj" />
+  </ItemGroup>
+
+</Project>

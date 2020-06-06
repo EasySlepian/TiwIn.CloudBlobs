@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/src/Samples.TiwIn.CloudBlobs.AzureStorageV12/Properties/launchSettings.json
+/src/XUnitTest.TiwIn.CloudBlobs.AzureStorageV12/Properties/launchSettings.json
