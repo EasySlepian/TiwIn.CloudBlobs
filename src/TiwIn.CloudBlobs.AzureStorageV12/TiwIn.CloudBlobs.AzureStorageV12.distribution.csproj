@@ -9,9 +9,10 @@
     <PackageLicenseExpression>Apache-2.0+</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/EasySlepian/TiwIn.CloudBlobs</PackageProjectUrl>
     <PackageTags>cloud storage blobs azure sdk v12</PackageTags>
-    <Version>1.0.0-preview-00</Version>
+    <Version>1.0.0-preview-01</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>Azure Blobs V12 implementation</Description>
   </PropertyGroup>
 
   <ItemGroup>
