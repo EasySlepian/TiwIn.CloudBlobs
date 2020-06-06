@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>TiwIn.CloudBlobs.AzureStorageV12</AssemblyName>
+    <RootNamespace>TiwIn.CloudBlobs.AzureStorageV12</RootNamespace>
+    <Authors>Easy</Authors>
+    <Company>Slepian</Company>
+    <PackageLicenseExpression>Apache-2.0+</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/EasySlepian/TiwIn.CloudBlobs</PackageProjectUrl>
+    <PackageTags>cloud storage blobs azure sdk v12</PackageTags>
+    <Version>1.0.0-preview-00</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.4.4" />
+    <PackageReference Include="System.Reactive" Version="4.4.1" />
+    <PackageReference Include="TiwIn.CloudBlobs" Version="1.0.0-preview-01" />
+  </ItemGroup>
+
+</Project>

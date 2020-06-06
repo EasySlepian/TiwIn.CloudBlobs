@@ -11,7 +11,11 @@
     <PackageLicenseExpression>Apache-2.0+</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/EasySlepian/TiwIn.CloudBlobs</PackageProjectUrl>
     <PackageTags>Utilities</PackageTags>
-    <Version>1.0.0-preview-00</Version>
+    <Version>1.0.0-preview-01</Version>
+    <PackageId>TiwIn</PackageId>
+    <Product>TiwIn</Product>
+    <RootNamespace>TiwIn</RootNamespace>
+    <AssemblyName>TiwIn</AssemblyName>
   </PropertyGroup>
 
 </Project>

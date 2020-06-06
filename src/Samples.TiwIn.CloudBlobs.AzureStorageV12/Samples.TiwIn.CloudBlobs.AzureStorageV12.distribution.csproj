@@ -6,4 +6,8 @@
     <RootNamespace>TiwIn.CloudBlobs.AzureStorageV12</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="TiwIn.CloudBlobs.AzureStorageV12" Version="1.0.0-preview-00" />
+  </ItemGroup>
+
 </Project>

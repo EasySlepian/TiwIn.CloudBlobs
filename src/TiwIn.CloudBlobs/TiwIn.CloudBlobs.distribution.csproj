@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>TiwIn.CloudBlobs</PackageId>
+    <Authors>Easy</Authors>
+    <Company>Slepian</Company>
+    <Product>TiwIn.CloudBlobs</Product>
+    <PackageLicenseExpression>Apache-2.0+</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/EasySlepian/TiwIn.CloudBlobs</PackageProjectUrl>
+    <PackageTags>cloud storage blobs abstractions</PackageTags>
+    <Description>Cloud Blobs storage abstractions</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.0.0-preview-01</Version>
+    <RootNamespace>TiwIn.CloudBlobs</RootNamespace>
+    <AssemblyName>TiwIn.CloudBlobs</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TiwIn" Version="1.0.0-preview-01" />
+  </ItemGroup>
+
+</Project>
