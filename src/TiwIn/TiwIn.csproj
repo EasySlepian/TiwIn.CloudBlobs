@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Easy</Authors>
+    <Company>Slepian</Company>
+    <Description>Common utilities</Description>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageLicenseExpression>Apache</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
