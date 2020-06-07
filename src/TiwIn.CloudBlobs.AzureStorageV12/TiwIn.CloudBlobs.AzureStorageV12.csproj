@@ -9,4 +9,9 @@
     <PackageReference Include="System.Reactive" Version="4.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TiwIn.CloudBlobs\TiwIn.CloudBlobs.csproj" />
+    <ProjectReference Include="..\TiwIn\TiwIn.csproj" />
+  </ItemGroup>
+
 </Project>

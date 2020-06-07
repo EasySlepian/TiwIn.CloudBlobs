@@ -27,6 +27,8 @@ namespace TiwIn.CloudBlobs.AzureStorageV12
 
         public static IBlobStoreProvider Create() => new AzBlobStoreProvider();
 
+
+
         [DebuggerStepThrough]
         protected override IBlobStore CreateBlobStore(string connectionString) => Parse(connectionString);
 
