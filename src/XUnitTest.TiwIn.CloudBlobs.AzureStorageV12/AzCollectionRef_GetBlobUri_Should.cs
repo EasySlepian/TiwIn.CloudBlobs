@@ -7,16 +7,12 @@ namespace TiwIn.CloudBlobs.AzureStorageV12
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reactive.Linq;
-    using System.Reactive.Threading.Tasks;
     using System.Runtime.InteropServices;
     using System.Threading.Tasks;
     using Azure.Storage.Blobs;
     using Extensions;
     using TiwIn.Extensions;
     using Xunit;
-    using static BlobPermissions;
 
     [Guid("e07b7a8f-8c5f-44ab-a389-91669c4d7a80")]
     public class AzCollectionRef_GetBlobUri_Should : AzCollectionRefTestBase

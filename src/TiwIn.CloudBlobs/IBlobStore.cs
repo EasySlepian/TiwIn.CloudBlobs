@@ -11,6 +11,10 @@ namespace TiwIn.CloudBlobs
     using System.IO;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Cloud Blob Store contract
+    /// </summary>
+    /// <seealso cref="TiwIn.CloudBlobs.IBlobStoreInfoService" />
     public partial interface IBlobStore : IBlobStoreInfoService
     {
         Uri GetCollectionUri(string collectionName, Action<SignCollectionUriOptions> config);
@@ -27,6 +31,13 @@ namespace TiwIn.CloudBlobs
 
         Task LockAsync(string collectionName, string blobName, BlobLockedCallback callback);
 
+        /// <summary>
+        /// The <see cref="GetBlobsAsync"/> operation returns an async sequence of blobs in this container.
+        /// Enumerating the blobs may make multiple requests to the store while fetching all the values.
+        /// </summary>
+        /// <param name="collectionName">Name of the collection.</param>
+        /// <param name="config">The options configuration.</param>
+        /// <returns></returns>
         IAsyncEnumerable<IBlobInfo> GetBlobsAsync(string collectionName, Action<ListBlobsOptions> config = null);
 
 
@@ -40,7 +51,15 @@ namespace TiwIn.CloudBlobs
 
         Task UploadAsync(string collectionName, string blobName, Stream input, Action<BlobUploadOptions> config = null);
 
-        
+        /// <summary>
+        /// Asynchronously creates a new BLOB and writes the specified string to the BLOB.
+        /// BLOB overwriting behavior is controlled with the options config- callback
+        /// </summary>
+        /// <param name="collectionName">Name of the blob collection.</param>
+        /// <param name="blobName">Name of the BLOB.</param>
+        /// <param name="text">The text to be uploaded.</param>
+        /// <param name="config">The upload options configuration.</param>
+        /// <returns></returns>
         Task WriteAllTextAsync(string collectionName, string blobName, string text, Action<BlobWriteTextOptions> config = null);
 
         Task DeleteBlobAsync(string collectionName, string blobName, Action<DeleteBlobOptions> config = null);

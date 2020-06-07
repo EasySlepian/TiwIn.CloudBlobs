@@ -10,6 +10,10 @@ namespace TiwIn.CloudBlobs.AzureStorageV12
     using Azure.Storage.Blobs;
     using Common;
 
+    /// <summary>
+    /// Azure Storage Blobs provider.
+    /// </summary>
+    /// <seealso cref="TiwIn.CloudBlobs.IBlobStoreProvider" />
     public sealed class AzBlobStoreProvider : BlobStoreProvider
     {
         private AzBlobStoreProvider() : base(AzBlobStoreInfoService.Instance)
@@ -25,6 +29,10 @@ namespace TiwIn.CloudBlobs.AzureStorageV12
             return new AzBlobStore(connectionString);
         }
 
+        /// <summary>
+        /// Creates an Azure Storage Blobs implementation of <see cref="IBlobStoreProvider"/>.
+        /// </summary>
+        /// <returns></returns>
         public static IBlobStoreProvider Create() => new AzBlobStoreProvider();
 
 

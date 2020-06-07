@@ -6,7 +6,6 @@
 namespace TiwIn.CloudBlobs.AzureStorageV12
 {
     using System;
-    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using Newtonsoft.Json;

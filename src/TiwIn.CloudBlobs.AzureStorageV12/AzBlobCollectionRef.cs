@@ -13,7 +13,6 @@ namespace TiwIn.CloudBlobs.AzureStorageV12
     using Azure;
     using Azure.Storage.Blobs;
     using Azure.Storage.Blobs.Models;
-    using Azure.Storage.Sas;
     using Common;
 
     [DebuggerDisplay("{CollectionName}")]
