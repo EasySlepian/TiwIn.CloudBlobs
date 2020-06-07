@@ -7,12 +7,10 @@ namespace TiwIn.CloudBlobs.AzureStorageV12
 {
     using System;
     using System.Threading.Tasks;
-    using static System.TimeSpan;
-    using static CollectionPermissions;
 
     class Program
     {
-        static async Task<int> Main(string[] args)
+        static async Task<int> Main()
         {
             var connectionString = Environment.GetEnvironmentVariable("ConnectionString");
             if (String.IsNullOrWhiteSpace(connectionString))
@@ -21,55 +19,30 @@ namespace TiwIn.CloudBlobs.AzureStorageV12
                 return 1;
             }
 
+            // Creates an Azure Store Blobs implementation of store provider
             var provider = AzBlobStoreProvider.Create();
+
+            // Create a Cloud Blob Store object which will be used to issue commands against the storage account 
             var store = provider.GetBlobStore(connectionString);
 
-
+            // Create the my-container collection
             await store.CreateCollectionIfNotExistsAsync("my-container");
 
-            //foreach (var index in Enumerable.Range(0, 10))
-            //{
-            //    var blobName = $"my-blob-{index}.txt";
-            //    await store.WriteAllTextAsync("my-container", blobName,
-            //        $"Hello world {index}",
-            //        options => options.AddProperty("MyKey", $"MyValue-{index}"));
-            //}
-
-            //await foreach (var blobInfo in store.GetBlobsAsync("my-container"))
-            //{
-            //    var text = await blobInfo.ReadAllTextAsync();
-            //    Console.WriteLine($"{blobInfo.BlobName}  ->   {text}");
-            //}
-
-
-            var collectionUrl = store.GetCollectionUri("my-container", options =>
+            // Upload blobs to a container
+            try
             {
-                options.Permissions = List | Read;
-                options.Started(FromSeconds(30));
-                options.ExpiresAfter(FromHours(2));
-            });
-
-
-            var blobUrlf = store.GetBlobUri("my-container/my-blob-8.txt", options =>
+                await store.WriteAllTextAsync("my-container", "my-blob.txt", "Hello world!");
+            }
+            catch (Exception ex) when(store.IsBlobAlreadyExistsError(ex))
             {
-                options.Permissions = BlobPermissions.Read;
-                options.ExpiresAfter(TimeSpan.FromMinutes(20));
-            });
-            
-
-            var collectionRef = provider.GetCollectionRef(collectionUrl);
-
-
-            await foreach (var blobInfo in collectionRef.GetBlobsAsync())
-            {
-                var text = await blobInfo.ReadAllTextAsync();
-                Console.WriteLine($"{blobInfo.BlobName}  ->   {text}");
+                Console.WriteLine("my-blob.txt already exists.");
             }
 
-            //var blobInfo = await store.GetBlobInfoAsync("my-container", "my-file.txt");
-            //var text = await blobInfo.ReadAllTextAsync();
-
-            //Console.WriteLine(text);
+            // List all blobs in the container
+            await foreach (var blobItem in store.GetBlobsAsync("my-container"))
+            {
+                Console.WriteLine("\t" + blobItem.BlobName);
+            }
 
             return 0;
         }

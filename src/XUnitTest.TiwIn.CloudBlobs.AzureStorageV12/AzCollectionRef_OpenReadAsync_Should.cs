@@ -9,7 +9,6 @@ namespace TiwIn.CloudBlobs.AzureStorageV12
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Threading.Tasks;
-    using Azure.Storage.Blobs;
     using TiwIn.Extensions;
     using Xunit;
 
