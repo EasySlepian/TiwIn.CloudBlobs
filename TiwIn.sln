@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{9E81C122
 		apply-copyright.ps1 = apply-copyright.ps1
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.TiwIn.CloudBlobs.AWSSDK.S3", "src\Samples.TiwIn.CloudBlobs.AWSSDK.S3\Samples.TiwIn.CloudBlobs.AWSSDK.S3.csproj", "{F7875070-D506-4AC6-808F-C73DDF347B47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{1B188D83-2A66-46AD-AA4C-8389FA5440B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B188D83-2A66-46AD-AA4C-8389FA5440B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B188D83-2A66-46AD-AA4C-8389FA5440B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7875070-D506-4AC6-808F-C73DDF347B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7875070-D506-4AC6-808F-C73DDF347B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7875070-D506-4AC6-808F-C73DDF347B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7875070-D506-4AC6-808F-C73DDF347B47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{C51390E8-6DB0-4CD3-8BC6-76457A3F3913} = {15CE7E09-994E-4937-837F-CC9AFD0EB2B8}
 		{606D08EF-6D7E-44E5-9091-F192DAC1B499} = {15CE7E09-994E-4937-837F-CC9AFD0EB2B8}
 		{1B188D83-2A66-46AD-AA4C-8389FA5440B9} = {15CE7E09-994E-4937-837F-CC9AFD0EB2B8}
+		{F7875070-D506-4AC6-808F-C73DDF347B47} = {3F7A0312-DA8F-4356-B09D-E6A9BF447918}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6B6D0D3-9DE5-4A37-869A-5CDDC8AC5323}
