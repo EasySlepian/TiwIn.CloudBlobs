@@ -76,6 +76,7 @@ namespace TiwIn.CloudBlobs.Common
         protected abstract Task<bool> DeleteBlobIfExistsAsync(string collectionName, string blobName, DeleteBlobOptions options);
 
 
+        [DebuggerStepThrough]
         private void Assert(string collectionName, string blobName)
         {
             if (string.IsNullOrWhiteSpace(collectionName))

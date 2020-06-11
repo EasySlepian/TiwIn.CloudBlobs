@@ -19,7 +19,7 @@
         
 
 
-        static async Task Main(string[] args)
+        static async Task<int> Main(string[] args)
         {
             var connectionString =new AwsS3ConnectionStringBuilder()
             {
@@ -28,29 +28,33 @@
                 RegionEndpointSystemName = GetEnvVariable("RegionSystemName")
             };
 
+            // Creates an AWS Store Blobs implementation of store provider
             var provider = AwsBlobStoreProvider.Create();
+
+            // Create a Cloud Blob Store object which will be used to issue commands against the storage account 
             var store = provider.GetBlobStore(connectionString.ConnectionStringBuilder);
 
-            var text = await store.ReadAllTextAsync(bucketName, keyName);
 
-            var credentials = new BasicAWSCredentials(connectionString.AccessKey, connectionString.SecretKey);
-            var client = new AmazonS3Client(credentials, connectionString.RegionEndpoint);
-            var request = new GetObjectRequest
+            // Create the my-container collection
+            await store.CreateCollectionIfNotExistsAsync("easyslepian");
+
+            // Upload blobs to a container
+            try
             {
-                BucketName = bucketName,
-                Key = keyName
-            };
-            
+                await store.WriteAllTextAsync("easyslepian", "my-blob.txt", "Hello world!");
+            }
+            catch (Exception ex) when (store.IsBlobAlreadyExistsError(ex))
+            {
+                Console.WriteLine("my-blob.txt already exists.");
+            }
 
-            using var response = await client.GetObjectAsync(request);
-            await using var responseStream = response.ResponseStream;
-            using var reader = new StreamReader(responseStream);
-            string title = response.Metadata["x-amz-meta-title"]; // Assume you have "title" as medata added to the object.
-            string contentType = response.Headers["Content-Type"];
-            Console.WriteLine("Object metadata, Title: {0}", title);
-            Console.WriteLine("Content type: {0}", contentType);
+            // List all blobs in the container
+            await foreach (var blobItem in store.GetBlobsAsync("easyslepian"))
+            {
+                Console.WriteLine("\t" + blobItem.BlobName);
+            }
 
-            var result = await reader.ReadToEndAsync(); // Now you process the response body.
+            return 0;
         }
 
         private static string GetEnvVariable(string key)

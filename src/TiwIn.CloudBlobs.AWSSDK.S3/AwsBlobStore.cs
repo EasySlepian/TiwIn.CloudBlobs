@@ -3,12 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Net;
     using System.Threading.Tasks;
     using Amazon;
     using Amazon.Runtime;
     using Amazon.S3;
     using Amazon.S3.Model;
+    using Amazon.S3.Util;
     using Common;
+    using Extensions;
 
     class AwsBlobStore : BlobStore
     {
@@ -44,14 +47,39 @@
             throw new NotImplementedException();
         }
 
-        protected override Task<bool> CreateCollectionIfNotExistsAsync(string collectionName, CollectionCreateOptions options)
+        protected override async Task<bool> CreateCollectionIfNotExistsAsync(string collectionName, CollectionCreateOptions options)
         {
-            throw new NotImplementedException();
+            if (await AmazonS3Util.DoesS3BucketExistV2Async(_client, collectionName))
+                return false;
+            var putBucketRequest = new PutBucketRequest
+            {
+                BucketName = collectionName,
+                UseClientRegion = true
+            };
+  
+            var putBucketResponse = await _client.PutBucketAsync(putBucketRequest);
+            return putBucketResponse.HttpStatusCode == HttpStatusCode.Accepted;
         }
 
-        protected override IAsyncEnumerable<IBlobInfo> GetBlobsAsync(string collectionName, ListBlobsOptions options)
+        protected override async IAsyncEnumerable<IBlobInfo> GetBlobsAsync(string collectionName, ListBlobsOptions options)
         {
-            throw new NotImplementedException();
+            var request = new ListObjectsV2Request
+            {
+                BucketName = collectionName,
+                MaxKeys = 10
+            };
+            ListObjectsV2Response response;
+            do
+            {
+                response = await _client.ListObjectsV2Async(request);
+
+                // Process the response.
+                foreach (var entry in response.S3Objects)
+                {
+                    yield return new AwsBlobInfo(entry.BucketName, entry.Key, this);
+                }
+                request.ContinuationToken = response.NextContinuationToken;
+            } while (response.IsTruncated);
         }
 
         protected override Task<Stream> OpenReadAsync(string collectionName, string blobName, BlobReadOptions options)
@@ -80,7 +108,17 @@
 
         protected override Task WriteAllTextAsync(string collectionName, string blobName, string text, BlobWriteTextOptions options)
         {
-            throw new NotImplementedException();
+            return text.ProcessAsStreamAsync(async stream =>
+            {
+                var response = await _client.PutObjectAsync(new PutObjectRequest()
+                {
+                    BucketName = collectionName, 
+                    Key = blobName,
+                    InputStream = stream
+                });
+
+            });
+   
         }
 
         protected override Task DeleteBlobAsync(string collectionName, string blobName, DeleteBlobOptions options)
